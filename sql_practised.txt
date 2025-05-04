@@ -1,0 +1,91 @@
+select  distinct salesmen_id from orders
+
+select * from salesman where city='Paris'
+
+select ord_no, ord_date, purch_amt.  from orders where salesmen_id='5001'
+
+select year, subject and winner from nobel_win wheer Year='1970'
+
+select winner from nobel_win where subject = ‘Literature’  and year  ='1971'
+
+
+select  year, subject from nobel_win  where  WINNER ='Dennis Gabor'
+
+select  winner from nobel_win where  subject = ‘Physics' and  year>1950 ;
+
+
+select year, subject, winner, and country from nobel_win where subject='Chemistry' and years >=1965  and  years<= 1975
+
+select * from nobel_win where category='Prime minister' and  year>1972
+ and  winner in ('Menachem Begin','Yitzhak Rabin')
+
+select Return year, subject, winner, country,  category from nobel_win  where winner like 'Louis%'
+
+From the following table, write a SQL query that combines the winners in Physics, 1970 and in Economics, 1971. Return year, subject, winner, country, and category.
+
+
+select year, subject, winner, country, and category from  nobel_win   where  subject='Physics' and Year='1970'
+UNION
+(select year, subject, winner, country, and category from nobel_win where subject='Economics' and Year='1971')
+
+
+select year, subject, winner, country, and category from nobel_win where  subject not in ('Physiology ','Economics') and year='1970'
+
+From the following table, write a SQL query to combine the winners in 'Physiology' before 1971 and winners in 'Peace' on or after 1974. Return year, subject, winner, country, and category.
+
+select year, subject, winner, country, and category from nobel_win where subject='Physiology' and year>1971
+UNION
+(select year, subject, winner, country, and category from nobel_win where subject='Peace' and year>1974)
+
+
+select year, subject, winner, country, and category  from nobel_win where  winner='Johannes Georg Bednorz'' 
+
+From the following table, write a SQL query to find Nobel Prize winners for the subject that does not begin with the letter 'P'. Return year, subject, winner, country, and category. Order the result by year, descending and winner in ascending.
+
+
+select year, subject, winner, country, and category from nobel_win where subject not like  'P%'  order by year desc, winner asc
+
+
+From the following table, write a SQL query to find the details of 1970 Nobel Prize winners. Order the results by subject, ascending except for 'Chemistry' and ‘Economics’ which will come at the end of the result set. Return year, subject, winner, country, and category.
+
+
+select  year, subject, winner, country, and category  from nobel_win  where subject not in ('Chemistry' ,‘Economics’) and year='1970' order by  subject  asc
+UNION
+select year, subject, winner, country, and category from nobel_win where subject in ('Chemistry' ,‘Economics’) and year='1970' order by subject asc.
+
+
+2. SQL Query to find Max Salary from each department.
+     select  max(salary) From employee group by departmentID
+
+3.. Write a SQL Query to print the name of distinct employee whose DOB is between
+01/01/1960 to 31/12/1975.
+
+select distinct employeeid from Employee where dob between  '01/01/1960 ' and  '31/12/1975'.
+
+4.Write an SQL Query find number of employees according to gender whose DOB is
+between 01/01/1960 to 31/12/1975
+    
+select count(*),gender  from Employee where dob between '01/01/1960 ' and '31/12/1975' group by gender
+
+5.Write an SQL Query to find employee whose Salary is equal or greater than 10000.
+select * from employee where salary>'10000'
+
+6.Write an SQL Query to find name of employee whose name Start with ‘M’
+      select * from employee where name like 'M%.
+
+7. find all Employee records containing the word "Joe", regardless of whether it was
+stored as JOE, Joe, or joe'
+         select * from employee where name like '%joe% OR  name like '%JOE% OR name like '%Joe%  or name like '%joe% 
+
+.List dept no., Dept name for all the departments in which there are no employees
+in the department
+
+select deptno,deptname from departments where deptno not in (select * from employees)
+
+42.Count the totalsa deptno wise where more than 2 employees exist.
+
+
+select sum(salary),deptno  from employee  group deptno having count(employeeid)>2
+        
+       
+
